@@ -5,6 +5,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
+from os import environ
 import logging
 import json
 import psycopg2
@@ -223,7 +224,7 @@ def cancel(update, context):
 def main():
 
     ### Add your Telegram Token in the line below provided from BotFather
-    updater = Updater(token= <<YOUR_TELEGRAM_TOKEN_HERE>>, use_context=True)
+    updater = Updater(token= environ.get("BOT_TOKEN", None), use_context=True)
     dispatcher = updater.dispatcher
 
     start_handler = CommandHandler('start', start)
